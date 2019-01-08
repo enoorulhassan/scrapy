@@ -4,14 +4,15 @@ import scrapy
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
     start_urls = [
-        'http://quotes.toscrape.com/tag/humor/',
+        'https://cio.siliconindia.com/cio-expert',
     ]
 
     def parse(self, response):
-        for quote in response.css('div.quote'):
+        for quote in response.css('div.Sheen'):
             yield {
-                'text': quote.css('span.text::text').extract_first(),
-                'author': quote.xpath('span/small/text()').extract_first(),
+                #'text': quote.css('span.text::text').extract_first(),
+                'Name': quote.xpath('a').extract_first(),
+             
             }
 
         next_page = response.css('li.next a::attr("href")').extract_first()
